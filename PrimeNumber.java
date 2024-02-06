@@ -1,32 +1,37 @@
 import java.util.Scanner;
 
-public class FindLargestNumber {
+public class PrimeNumber{
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner s = new Scanner(System.in);
 
-        System.out.print("Enter the first number: ");
-        int n1 = scanner.nextInt();
+        System.out.print("Enter the  range: ");
+        int start = s.nextInt();
 
-        System.out.print("Enter the second number: ");
-        int n2 = scanner.nextInt();
+        System.out.print("Enter the  range: ");
+        int end = s.nextInt();
 
-        System.out.print("Enter the third number: ");
-        int n3 = scanner.nextInt();
-
-        int largestNumber = findLargest(n1, n2, n3);
-
-        System.out.println("The largest number is: " + largestNumber);
-
-        scanner.close();
+        System.out.println("Prime numbers between " + start + " and " + end + ":");
+        generatePrimeNumbers(start, end);
     }
 
-    private static int findLargest(int n1, int n2, int n3) {
-        if (n1 >= n2 && n1 >= n3) {
-            return n1;
-        } else if (n2 >= n1 && n2 >= n3) {
-            return n2;
-        } else {
-            return n3;
+    private static boolean isPrime(int num) {
+        if (num <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static void generatePrimeNumbers(int start, int end) {
+        for (int i = start; i <= end; i++) {
+            if (isPrime(i)) {
+                System.out.print(i + " ");
+            }
         }
     }
 }
